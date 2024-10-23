@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mi Mapa con Ruta</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@3.4.0/dist/leaflet-routing-machine.js"></script>
+</head>
+<body>
+    <div id="mapid" style="width: 600px; height: 400px;"></div>
+    <script>
+        var map = L.map('mapid').setView([51.505, -0.09], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        var routingMachine = L.Routing.control({
+            waypoints: [],
+            routeWhileDragging: true, // Permite recalcular la ruta mientras se arrastran los waypoints
+            createMarker: function(i, waypoint) {
+                // Personaliza los marcadores de los waypoints
+                return L.marker(waypoint.latLng, {
+                    draggable: true,
+                    icon: L.icon({
+                        iconUrl: 'https://unpkg.com/leaflet@1.8.0/dist/images/marker-icon.png',
+                        shadowUrl: 'https://unpkg.com/leaflet@1.8.0/dist/images/marker-shadow.png'
+                    })
+                });
+            }
+        }).addTo(map);
+
+        function onLocationFound(e) {
+            var radius = e.accuracy / 2;
+
+            L.marker(e.latlng).addTo(map)
+                .bindPopup("You are here.").openPopup();
+
+            L.circle(e.latlng, radius).addTo(map);
+
+            // Agregar la ubicación del usuario como primer waypoint y calcular la ruta
+            routingMachine.setWaypoints([
+                L.latLng(e.latitude, e.longitude),
+                L.latLng(51.515, -0.08) // Reemplaza con la latitud y longitud del destino
+            ]);
+
+            // Obtener la dirección de la ubicación del usuario
+            var reverseGeocoder = L.Control.Geocoder.nominatim({
+                reverse: true
+            }).addTo(map);
+
+            reverseGeocoder.reverse(e.latlng, function(results) {
+                if (results.length > 0) {
+                    var address = results[0].address;
+                    console.log("Tu ubicación es:", address);
+                }
+            });
+        }
+
+        function onLocationError(e) {
+            alert(e.message);
+        }
+
+        map.locate({setView: true, maxZoom: 16});
+    </script>
+</body>
+</html>
