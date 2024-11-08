@@ -1,0 +1,36 @@
+.container1{
+
+    border:solid rgb(0, 0, 0) 2px;
+    border-radius: 20%;
+    margin-top: 50px;
+    width: 150px;
+    height: 150px;
+}
+
+
+#container{
+    display: grid;
+    grid-template-columns: repeat(3, 0.12fr);
+    grid-auto-rows: 180px;
+
+    justify-content: center;
+}
+
+
+#fondo_t{
+    display: grid;
+    grid-template-columns: repeat(1);
+    justify-content: center;
+}
+
+nav ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: unset;
+    list-style: none;
+    
+}
+
+nav li{
+    padding: 50px;
+}

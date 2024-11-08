@@ -1,0 +1,42 @@
+body{
+    background-color: rgb(201, 90, 127);
+}
+
+#lista {
+    color: blanchedalmond;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    list-style:disc;
+    font-size: 25px;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 250px;
+}
+
+input{
+    text-align: center;
+    background-color: transparent;
+    border: solid 2px rgb(202, 115, 144);;
+    font-size: 25px;
+
+}
+
+button{
+    background-color: blanchedalmond;
+    width: 100px;
+    border-radius: 20%;
+    font-size: large;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+}
+
+.correcto{
+    text-decoration:line-through;
+}

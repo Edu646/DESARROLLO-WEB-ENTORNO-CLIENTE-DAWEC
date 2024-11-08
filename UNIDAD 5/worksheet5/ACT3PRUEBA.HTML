@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Password Validation</title>
+  <style>
+    .correcto {
+      text-decoration: line-through;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="PU">
+  <ul>
+    <li class="LOW">1 Lowercase character</li>
+    <li class="UPER">1 Uppercase character</li>
+    <li class="MIN">6 Minimum characters</li>
+  </ul>
+  <script>
+   
+const input = document.getElementById('PU');
+const listaItems = [
+    document.getElementsByClassName('LOW'),
+    document.getElementsByClassName('UPER'),
+    document.getElementsByClassName('MIN')
+];
+
+
+function validar() {
+    const texto = input.value;
+
+
+    const tieneMinusc = /[a-z]/.test(texto);
+    const tieneMayusc = /[A-Z]/.test(texto);
+    const tieneMinimo6 = texto.length >= 6;
+
+    listaItems[0].classList.toggle('correcto', tieneMinusc);
+    listaItems[1].classList.toggle('correcto', tieneMayusc);
+    listaItems[2].classList.toggle('correcto', tieneMinimo6);
+}
+
+
+input.addEventListener('input', validar);
+
+  </script>
+</body>
+</html>

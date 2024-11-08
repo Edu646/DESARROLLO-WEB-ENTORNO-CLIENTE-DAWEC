@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Validaciones con Expresiones Regulares</title>
+  <link rel="stylesheet" href="./ACT1.CSS">
+</head>
+<body>
+
+  <div class="form-container">
+    <h1>Formulario de Validación</h1>
+
+    <label for="mayuscula">Ingresa un texto (mayúscula):</label>
+    <input type="text" id="mayuscula" placeholder="Debe tener al menos una mayúscula">
+    <span id="mayuscula-error" class="error"></span>
+
+    <label for="especiales">Ingresa un texto (carácter especial):</label>
+    <input type="text" id="especiales" placeholder="Debe tener un carácter especial (!@#$%^&)">
+    <span id="especiales-error" class="error"></span>
+
+    <label for="correo">Correo electrónico:</label>
+    <input type="email" id="correo" placeholder="Debe ser un correo válido">
+    <span id="correo-error" class="error"></span>
+
+    <label for="tarjeta">Número de tarjeta de crédito:</label>
+    <input type="text" id="tarjeta" placeholder="Formato: 1234-5678-9101-1121">
+    <span id="tarjeta-error" class="error"></span>
+
+    <label for="longitud">Texto con longitud mínima:</label>
+    <input type="text" id="longitud" placeholder="Debe tener al menos 8 caracteres">
+    <span id="longitud-error" class="error"></span>
+
+    <label for="numero">Texto con número:</label>
+    <input type="text" id="numero" placeholder="Debe contener al menos un número">
+    <span id="numero-error" class="error"></span>
+
+    <button id="validar-btn">Validar</button>
+  </div>
+
+  <script src="ACT1.JS"></script>
+</body>
+</html>

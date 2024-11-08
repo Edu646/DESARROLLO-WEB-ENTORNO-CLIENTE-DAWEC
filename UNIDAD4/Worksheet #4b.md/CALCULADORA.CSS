@@ -1,0 +1,47 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222; /* Color de fondo oscuro */
+  }
+  
+  .calculadora {
+    background-color: #333;
+    border-radius: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 300px; /* Ajusta el ancho según la imagen */
+  }
+  
+  .pantalla {
+    background-color: #444;
+    color: #fff;
+    height: 50px;
+    border-radius: 5px;
+    padding: 50px;
+  
+    font-size: 24px;
+  }
+  
+  .botones {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+  }
+  
+  button {
+    font-size: 20px;
+    padding: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #555;
+    color: #fff;
+  }
+  
+  .igual {
+    background-color: #4285F4; 
+    color: #fff;
+  }

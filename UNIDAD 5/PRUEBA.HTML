@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Divs con colores aleatorios</title>
+    <style>
+        .div-color {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            text-align: center;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="contenedor"></div>
+
+    <script>
+        const contenedor = document.getElementById('contenedor');
+
+        function generarColorAleatorio() {
+            const r = Math.floor(Math.random() * 256);
+            const g = Math.floor(Math.random() * 256);
+            const b = Math.floor(Math.random()   
+ * 256);
+            return `rgb(${r}, ${g}, ${b})`;
+        }
+
+        
+        for (let i = 0; i < 6; i++) {
+            const div = document.createElement('div');
+            div.classList.add('div-color');
+            div.style.backgroundColor = generarColorAleatorio();
+            contenedor.appendChild(div);
+        }
+    </script>
+</body>
+</html>
