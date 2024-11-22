@@ -1,84 +1,90 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   margin: 0;
-  background-color: #f8b195; /* Fondo suave anaranjado */
+  background-color: #f3f4f6; /* Fondo suave y claro */
 }
 
 .calculadora {
-  background-color: #f0e4d7; /* Color claro similar a la calculadora de la imagen */
-  border-radius: 12px;
-  box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.2);
-  padding: 20px;
-  width: 280px; /* Ancho más ajustado para una calculadora compacta */
+  background-color: #ffffff; /* Fondo blanco para la calculadora */
+  border-radius: 16px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.2); /* Sombra suave */
+  padding: 30px;
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 }
 
 .pantalla {
-  background-color: #ffffff; /* Fondo blanco para la pantalla */
+  background-color: #f7f7f7; /* Fondo claro para la pantalla */
   color: #333333; /* Texto oscuro */
-  height: 50px;
-  border-radius: 8px;
-  padding: 10px;
-  text-align: center;
-  font-size: 28px; /* Tamaño de fuente adecuado */
-  margin-bottom: 100px;
+  height: 150px;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: right;
+  font-size: 36px; /* Texto grande y claro */
+  font-weight: bold;
+  margin-bottom: 25px;
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1); /* Efecto hundido */
 }
 
 .botones {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 15px; /* Espaciado uniforme entre botones */
 }
 
 button {
-  font-size: 20px;
-  padding: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 20px;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   cursor: pointer;
-  background-color: #ffffff; /* Fondo blanco para los botones */
+  background-color: #e9ecef; /* Fondo gris claro */
   color: #333333; /* Texto oscuro */
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para botones */
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
-  background-color: #e8e8e8; /* Color de fondo al pasar el mouse */
-  transform: translateY(-2px);
+  background-color: #d9d9d9; /* Fondo más oscuro al pasar el mouse */
+  transform: translateY(-3px);
 }
 
 button:active {
   transform: translateY(0);
-  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0px 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 .igual {
-  background-color: #4CAF50; /* Botón de igual en color verde */
-  color: white;
-  grid-column: span 2;
+  background-color: #28a745; /* Botón de igual en verde brillante */
+  color: #ffffff;
+  grid-column: span 2; /* Ocupa dos columnas */
 }
 
 .igual:hover {
-  background-color: #45a049;
+  background-color: #218838; /* Verde más oscuro al pasar el mouse */
 }
 
 .borrar, .ce {
-  background-color: #e74c3c; /* Botones C y CE en rojo */
-  color: white;
+  background-color: #dc3545; /* Botones de borrar en rojo */
+  color: #ffffff;
 }
 
 .borrar:hover, .ce:hover {
-  background-color: #c0392b;
+  background-color: #c82333; /* Rojo más oscuro al pasar el mouse */
 }
 
 .operador {
-  background-color: #d1d1d1; /* Botones de operaciones (sumar, restar, etc.) */
-  color: #333333;
+  background-color: #17a2b8; /* Botones de operaciones en azul claro */
+  color: #ffffff;
 }
 
 .operador:hover {
-  background-color: #b3b3b3;
+  background-color: #138496; /* Azul más oscuro al pasar el mouse */
 }

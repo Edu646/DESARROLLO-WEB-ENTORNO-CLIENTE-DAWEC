@@ -1,36 +1,57 @@
-.container1{
-
-    border:solid rgb(0, 0, 0) 2px;
-    border-radius: 20%;
-    margin-top: 50px;
-    width: 150px;
+.container1 {
+    border: solid 2px rgb(0, 0, 0); /* La especificación de colores puede ser más breve */
+    border-radius: 20%; 
+    margin-top: 50px; 
+    width: 150px; 
     height: 150px;
+    display: flex; /* Mejora el diseño interno */
+    align-items: center; /* Centra el contenido verticalmente */
+    justify-content: center; /* Centra el contenido horizontalmente */
+    transition: transform 0.3s ease; /* Añade un efecto para interacciones */
 }
 
+.container1:hover {
+    transform: scale(1.1); /* Añade un efecto de hover */
+}
 
-#container{
+#container {
     display: grid;
-    grid-template-columns: repeat(3, 0.12fr);
+    grid-template-columns: repeat(3, 0.12fr); 
     grid-auto-rows: 180px;
-
     justify-content: center;
+    align-items: center;
+    gap: 10px; /* Añade espacio entre elementos */
+    padding: 20px; /* Añade separación interna */
 }
 
-
-#fondo_t{
-    display: grid;
-    grid-template-columns: repeat(1);
+#fondo_t {
+    display: flex;
+    flex-direction: column; /* Mejora legibilidad */
+    align-items: center;
     justify-content: center;
+    padding: 10px; /* Añade separación interna */
 }
 
-nav ul{
+nav ul {
     display: flex;
     flex-direction: row;
-    flex-wrap: unset;
+    flex-wrap: nowrap; /* Usa 'nowrap' en lugar de 'unset' */
     list-style: none;
-    
+    justify-content: center;
+    padding: 0; /* Elimina el padding por defecto */
+    margin: 0; /* Elimina el margin por defecto */
+    gap: 10px; /* Espaciado entre elementos */
 }
 
-nav li{
-    padding: 50px;
+nav li {
+    padding: 20px; /* Reduce el padding para evitar excesos */
+    margin: 0; /* Evita márgenes no deseados */
+    background-color: #f0f0f0; /* Añade un fondo claro para mejor visibilidad */
+    border-radius: 10px; /* Añade bordes redondeados */
+    transition: background-color 0.3s ease; /* Suaviza el cambio de color */
+}
+
+nav li:hover {
+    background-color: #dcdcdc; /* Cambia el fondo al pasar el cursor */
+    cursor: pointer; /* Indica que es interactivo */
 }

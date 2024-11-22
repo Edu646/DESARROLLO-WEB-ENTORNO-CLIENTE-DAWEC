@@ -1,17 +1,39 @@
+/* Estilo para el tablero */
 .board {
-    display: grid;
-    grid-template-columns: repeat(3, 100px);
-    grid-gap: 2px;
-   justify-content: center;
-   margin-top: 80px;
-  }
-  .cell {
-    width: 100px;
-    height: 100px;
-    text-align: center;
-    line-height: 100px;
-    font-size: 40px;
-    border: 1px solid black;
-    cursor: pointer;
-    background-color: blue;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 100px);
+  grid-gap: 5px;
+  justify-content: center;
+  margin-top: 80px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Sombra sutil alrededor del tablero */
+  background-color: #f0f0f0; /* Fondo suave para el tablero */
+  padding: 10px; /* Espaciado interno para separar las celdas */
+  border-radius: 10px; /* Bordes redondeados */
+}
+
+/* Estilo para las celdas */
+.cell {
+  width: 100px;
+  height: 100px;
+  text-align: center;
+  line-height: 100px;
+  font-size: 40px;
+  border: 2px solid #3498db; /* Borde azul más grueso */
+  cursor: pointer;
+  background-color: #2980b9; /* Azul más vibrante */
+  color: white; /* Color del texto en blanco */
+  border-radius: 8px; /* Bordes redondeados para las celdas */
+  transition: background-color 0.3s, transform 0.2s; /* Transiciones suaves para los cambios de color y transformaciones */
+}
+
+/* Efecto al pasar el ratón por encima */
+.cell:hover {
+  background-color: #3498db; /* Azul más claro cuando se pasa el ratón */
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+}
+
+/* Efecto al hacer clic en una celda */
+.cell:active {
+  background-color: #1f6e8c; /* Azul más oscuro al hacer clic */
+  transform: scale(1); /* Regresa al tamaño original */
+}

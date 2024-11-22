@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
+    <script src="./index.js"></script>
+    <title>Notas</title>
+</head>
+<body>
+
+    <button id="menu-toggle" class="menu-toggle">---</button>
+    <nav id="navegacion">
+      <button id="close-menu" class="close-menu">X</button>
+
+
+      <div>
+        <ul class="barra">
+            <li><button id="CREAR">CREAR  NOTA</button></li>
+        </ul>
+      </div>
+
+    </nav>
+
+    <div id="ventana">
+        <h2>Nombre de la Nota</h2>
+        <input type="text" id="nombreNota" placeholder="Escribe el nombre de la nota" />
+        <textarea id="contenidoNota" placeholder="Escribe el contenido de la nota"></textarea>
+        <div class="ventana-footer">
+            <button id="botonGuardar">Guardar</button>
+            <button id="botonCerrar">Cerrar</button>
+        </div>
+    </div>
+        <div id="notas"></div>
+
+   
+</body>
+</html>
