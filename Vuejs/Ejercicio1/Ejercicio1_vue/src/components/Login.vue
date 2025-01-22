@@ -99,7 +99,7 @@ const login = async () => {
           <input v-model="email" type="email" placeholder="Correo electrónico" />
           <input v-model="password" type="password" placeholder="Contraseña" />
           <button @click="iniciarSesionConCorreo" class="auth-btn">
-            <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Correo" class="auth-icon" />
+            <img src="https://cdn-icons-png.flaticon.com/512/561/561127.png" alt="Correo" class="auth-icon" />iniciar sesión
           </button>
         </div>
 
@@ -121,10 +121,9 @@ const login = async () => {
 </template>
 
 <style scoped>
-
 body {
-  font-family: Arial, sans-serif;
-  background-color: #f9f9f9;
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f7fa;
   color: #333;
   display: flex;
   justify-content: center;
@@ -134,12 +133,18 @@ body {
 }
 
 .auth-container {
-  background: #ffffff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 300px;
+  background: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  width: 350px;
   text-align: center;
+}
+
+h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 20px;
 }
 
 .auth-btn {
@@ -147,40 +152,44 @@ body {
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 10px 20px;
-  margin: 10px 0;
-  background-color: #007bff;
-  color: #ffffff;
+  padding: 12px 20px;
+  margin: 12px 0;
+  background-color: #4285F4;
+  color: #fff;
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  box-sizing: border-box;
 }
 
 .auth-btn:hover {
-  background-color: #0056b3;
+  background-color: #357ae8;
+  transform: translateY(-2px);
 }
 
 .auth-btn img.auth-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 8px;
+  width: 22px;
+  height: 22px;
+  margin-right: 10px;
 }
 
 input[type="email"], input[type="password"] {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   margin: 10px 0;
   border: 1px solid #ddd;
-  border-radius: 5px;
+  border-radius: 6px;
   box-sizing: border-box;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
 }
 
 input[type="email"]:focus, input[type="password"]:focus {
   outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  border-color: #4285F4;
+  box-shadow: 0 0 8px rgba(66, 133, 244, 0.3);
 }
 
 button {
@@ -188,12 +197,23 @@ button {
 }
 
 p {
-  margin: 10px 0;
+  margin-top: 20px;
 }
 
-p.error {
-  color: red;
+.error {
+  color: #ff4d4d;
   font-size: 14px;
+}
+
+.is-registering p {
+  margin-top: 10px;
+  color: #007bff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.is-registering p:hover {
+  text-decoration: underline;
 }
 
 </style>
