@@ -1,0 +1,20 @@
+
+
+    {
+    "nombre": "Juan Pérez",
+    "edad": 30,
+    "correo": "juan.perez@example.com",
+    "direccion": {
+      "calle": "Avenida Siempre Viva",
+      "numero": 123,
+      "ciudad": "Ciudad de México",
+      "pais": "México"
+    },
+    "intereses": ["fútbol", "programación", "lectura"],
+    "activo": true
+    }
+
+
+    
+
+

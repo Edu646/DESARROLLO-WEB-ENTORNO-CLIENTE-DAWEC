@@ -1,19 +1,16 @@
 window.onload = () => {
-    // Obtener las referencias a los elementos del DOM
     const menuToggle = document.getElementById("menu-toggle");
     const closeMenu = document.getElementById("close-menu");
     const navegacion = document.getElementById("navegacion");
 
-    // Función para abrir el menú
     menuToggle.addEventListener("click", () => {
-        navegacion.classList.add("show"); // Muestra el menú añadiendo la clase 'show'
-        closeMenu.style.display = "block"; // Muestra el botón de cerrar
+        navegacion.classList.add("show");
+        closeMenu.style.display = "block";
     });
 
-    // Función para cerrar el menú
     closeMenu.addEventListener("click", () => {
-        navegacion.classList.remove("show"); // Oculta el menú quitando la clase 'show'
-        closeMenu.style.display = "none"; // Oculta el botón de cerrar
+        navegacion.classList.remove("show");
+        closeMenu.style.display = "none";
     });
 
     const crear_nota = document.getElementById("CREAR");
@@ -24,124 +21,174 @@ window.onload = () => {
     const contenidoNota = document.getElementById('contenidoNota');
     const notasContainer = document.getElementById('notas');
 
-    // Función para abrir la ventana
     crear_nota.addEventListener('click', () => {
         ventana.style.display = 'block';
-        nombreNota.value = ''; // Limpiar el campo del nombre
-        contenidoNota.value = ''; // Limpiar el campo de contenido
+        nombreNota.value = '';
+        contenidoNota.value = '';
     });
 
-    // Función para cerrar la ventana
     botonCerrar.addEventListener('click', () => {
         ventana.style.display = 'none';
     });
 
-    // Función para guardar la nota
     botonGuardar.addEventListener('click', () => {
-        const titulo = nombreNota.value.trim();  // Obtener el título de la nota
-        const contenido = contenidoNota.value.trim();  // Obtener el contenido de la nota
+        const titulo = nombreNota.value.trim();
+        const contenido = contenidoNota.value.trim();
         
         if (titulo && contenido) {
-            // Crear un nuevo objeto de nota
             const nuevaNota = {
                 titulo: titulo,
-                contenido: contenido
+                contenido: contenido,
+                tiempoCreacion: Date.now(),
+                tiempoCronometro: 0,  // Añadir el tiempo del cronómetro
+                cronometroInterval: null, // Intervalo del cronómetro
+                posicion: { x: 0, y: 0 }, // Posición inicial de la nota
             };
 
-            // Recuperar las notas existentes desde localStorage
             let notas = JSON.parse(localStorage.getItem('notas')) || [];
-
-            // Agregar la nueva nota al arreglo de notas
             notas.push(nuevaNota);
-
-            // Guardar el arreglo actualizado en localStorage
             localStorage.setItem('notas', JSON.stringify(notas));
 
-            // Mostrar la nueva nota
             mostrarNota(nuevaNota);
-
-            // Cerrar la ventana después de guardar
             ventana.style.display = 'none';
         } else {
             alert('Por favor, ingresa un título y contenido para la nota.');
         }
     });
 
-    // Función para mostrar una nota
     function mostrarNota(nota) {
-        // Crear un div para mostrar la nota
         const nuevaNotaDiv = document.createElement('div');
         nuevaNotaDiv.classList.add('nota');
-        
-        // Crear el título de la nota
+        nuevaNotaDiv.setAttribute('draggable', 'true');
+        nuevaNotaDiv.style.position = 'absolute';
+        nuevaNotaDiv.style.left = `${nota.posicion.x}px`;
+        nuevaNotaDiv.style.top = `${nota.posicion.y}px`;
+
         const tituloNota = document.createElement('h3');
         tituloNota.textContent = nota.titulo;
         
-        // Crear el contenido de la nota
         const contenidoNota = document.createElement('p');
         contenidoNota.textContent = nota.contenido;
-        
-        // Crear un área de texto editable para modificar el contenido
-        const areaTexto = document.createElement('textarea');
-        areaTexto.value = nota.contenido;  // Inicializar con el contenido de la nota
-        areaTexto.style.display = 'none';  // Inicialmente oculta
 
-        // Crear un botón para guardar los cambios
+        const cronometro = document.createElement('span');
+        cronometro.classList.add('cronometro');
+        cronometro.textContent = formatTime(nota.tiempoCronometro);
+        
+        // Iniciar cronómetro
+        nota.cronometroInterval = setInterval(() => {
+            nota.tiempoCronometro++;
+            cronometro.textContent = formatTime(nota.tiempoCronometro);
+            actualizarNota(nota); // Guardar en localStorage
+        }, 1000);
+
+        const areaTexto = document.createElement('textarea');
+        areaTexto.value = nota.contenido;
+        areaTexto.style.display = 'none';
+
         const botonModificar = document.createElement('button');
         botonModificar.textContent = 'Modificar';
-        
-        // Función para permitir modificar el contenido
         botonModificar.addEventListener('click', () => {
             if (areaTexto.style.display === 'none') {
-                areaTexto.style.display = 'block';  // Mostrar el área de texto
-                botonModificar.textContent = 'Guardar cambios';  // Cambiar el texto del botón
+                areaTexto.style.display = 'block';
+                botonModificar.textContent = 'Guardar cambios';
             } else {
-                contenidoNota.textContent = areaTexto.value;  // Actualizar el contenido con el área de texto
-                areaTexto.style.display = 'none';  // Ocultar el área de texto
-                botonModificar.textContent = 'Modificar';  // Cambiar el texto del botón a "Modificar"
-                
-                // Actualizar la nota en localStorage
+                contenidoNota.textContent = areaTexto.value;
+                areaTexto.style.display = 'none';
+                botonModificar.textContent = 'Modificar';
                 actualizarNota(nota, areaTexto.value);
             }
         });
 
-        // Crear un botón de "Cerrar" para eliminar la nota
         const botonCerrarNota = document.createElement('button');
         botonCerrarNota.textContent = 'Cerrar';
         botonCerrarNota.addEventListener('click', () => {
-            nuevaNotaDiv.remove();  // Eliminar la nota del DOM
-            eliminarNota(nota);  // Eliminar la nota de localStorage
+            nuevaNotaDiv.remove();
+            clearInterval(nota.cronometroInterval); // Detener el cronómetro
+            eliminarNota(nota);
         });
 
-        // Añadir los elementos a la nueva nota
         nuevaNotaDiv.appendChild(tituloNota);
         nuevaNotaDiv.appendChild(contenidoNota);
         nuevaNotaDiv.appendChild(areaTexto);
+        nuevaNotaDiv.appendChild(cronometro);
         nuevaNotaDiv.appendChild(botonModificar);
         nuevaNotaDiv.appendChild(botonCerrarNota);
         
-        // Añadir la nueva nota al contenedor
         notasContainer.appendChild(nuevaNotaDiv);
+
+        nuevaNotaDiv.addEventListener('dragstart', handleDragStart);
+        nuevaNotaDiv.addEventListener('dragover', handleDragOver);
+        nuevaNotaDiv.addEventListener('drop', handleDrop);
+        nuevaNotaDiv.addEventListener('dragend', handleDragEnd);
     }
 
-    // Función para eliminar una nota de localStorage
     function eliminarNota(nota) {
         let notas = JSON.parse(localStorage.getItem('notas')) || [];
         notas = notas.filter(n => n.titulo !== nota.titulo || n.contenido !== nota.contenido);
-        localStorage.setItem('notas', JSON.stringify(notas));  // Guardar el arreglo actualizado
+        localStorage.setItem('notas', JSON.stringify(notas));
     }
 
-    // Función para actualizar una nota en localStorage
     function actualizarNota(nota, nuevoContenido) {
         let notas = JSON.parse(localStorage.getItem('notas')) || [];
         const indice = notas.findIndex(n => n.titulo === nota.titulo && n.contenido === nota.contenido);
         if (indice !== -1) {
-            notas[indice].contenido = nuevoContenido; // Actualizar el contenido de la nota
-            localStorage.setItem('notas', JSON.stringify(notas));  // Guardar las notas actualizadas
+            notas[indice].contenido = nuevoContenido || notas[indice].contenido;
+            notas[indice].tiempoCronometro = nota.tiempoCronometro; // Actualizar tiempo
+            localStorage.setItem('notas', JSON.stringify(notas));
         }
     }
 
-    // Cargar las notas guardadas al iniciar la página
-    const notas = JSON.parse(localStorage.getItem('notas')) || [];
-    notas.forEach(nota => mostrarNota(nota));  // Mostrar todas las notas guardadas
-};
+    function formatTime(seconds) {
+        const minutes = Math.floor(seconds / 60);
+        const remainingSeconds = seconds % 60;
+        return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    }
+
+    let draggedItem = null;
+
+    function handleDragStart(e) {
+        draggedItem = e.target;
+        e.dataTransfer.setData('text/plain', draggedItem.textContent);
+        setTimeout(() => draggedItem.style.opacity = 0.5, 0);
+    }
+
+    function handleDragOver(e) {
+        e.preventDefault();
+    }
+
+    function handleDrop(e) {
+        e.preventDefault();
+
+        const rect = notasContainer.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+        draggedItem.style.position = 'absolute';
+        draggedItem.style.left = `${x - draggedItem.offsetWidth / 2}px`;  // Centrado sobre el cursor
+        draggedItem.style.top = `${y - draggedItem.offsetHeight / 2}px`;  // Centrado sobre el cursor
+
+        actualizarPosicionNota(draggedItem, x, y);
+    }
+
+    function handleDragEnd(e) {
+        draggedItem.style.opacity = ''; 
+        draggedItem = null;
+    }
+
+    function actualizarPosicionNota(nota, x, y) {
+        let notas = JSON.parse(localStorage.getItem('notas')) || [];
+        const index = notas.findIndex(n => n.titulo === nota.querySelector('h3').textContent);
+        if (index !== -1) {
+            // Actualizamos la nueva posición
+            notas[index].posicion = { x: x - nota.offsetWidth / 2, y: y - nota.offsetHeight / 2 };
+            localStorage.setItem('notas', JSON.stringify(notas));
+        }
+    }
+
+    function cargarNotas() {
+        let notas = JSON.parse(localStorage.getItem('notas')) || [];
+        notas.forEach(nota => mostrarNota(nota));
+    }
+
+    cargarNotas();
+}

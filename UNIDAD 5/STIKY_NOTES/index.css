@@ -1,227 +1,207 @@
+/* Estilos generales */
 body {
-    background-color: #484848;
-    margin: 0; /* Elimina márgenes predeterminados */
+    font-family: Arial, sans-serif;
+    margin: 0;
     padding: 0;
-    overflow-x: hidden; /* Evita desplazamiento horizontal innecesario */
-    font-size: 16px; /* Base para usar rem */
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+    color: #333;
+    overflow-x: hidden; /* Prevenir que se desborde en el eje X */
 }
 
-h1 {
-    text-align: center;
-    font-size: 2rem; /* Tamaño del título adaptativo */
-}
-
-#navegacion {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: center; /* Centra el contenido verticalmente */
-    background-color: rgb(239, 202, 153);
-    backdrop-filter: blur(5rem); /* Difuminado */
-    position:static; /* Permanece fija en la pantalla */
-    top: 0;
-    left: 0;
-    width: 30%;
-    height: 100%;
-    visibility: hidden; /* Oculta inicialmente */
-    opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    padding: 2vh; /* Espaciado interno */
-}
-
-
-
-ul {
-    display: flex;
-    flex-direction: row;
-    align-items:center;
-    padding-left: 0;
-    margin-left: 60%;
-}
-
-
-
-li {
-    margin-top: 0.5vh;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    font-size: 1.25rem; /* Escala con el texto base */
-    padding: 0.5rem;
-    list-style: none;
-}
-
-li button{
-    border-radius: 2em 2em 2em 2em;
-    font-family: fantasy;
-    font-size: 2em;
-    width: 5em ;
-}
-
-
-li:hover {
-    background-color: deeppink;
-    border-radius: 2em 2em 2em 2em; /* Bordes más sutiles */
-    padding: 1rem;
-    width: auto;
-}
-
+/* Botón de menú */
 .menu-toggle {
-    display: block;
-    background-color: hsl(253, 5%, 35%);
+    position:relative;
+    top: 10px;
+    left: 10px;
+    background-color: #007bff;
     color: white;
     border: none;
-    padding: 1rem;
-    font-size: 1.5rem;
+    padding: 10px 15px;
+    border-radius: 5px;
     cursor: pointer;
-    border-radius: 0.5rem;
-    position: fixed; /* Fija el botón de menú */
-    top: 2vh; /* Margen superior en relación a la altura de la ventana */
-    left: 2vw; /* Margen izquierdo relativo al ancho de la ventana */
-    z-index: 1100; /* Por encima del menú */
-}
-
-.menu-toggle:hover {
-    background-color: hsl(258, 39%, 59%);
+    z-index: 1000;
 }
 
 .close-menu {
-    display: none;
-    position: absolute;
-    top: 2vh;
-    right: 2vw;
-    background-color: #f44336;
+    background-color: #dc3545;
     color: white;
     border: none;
-    padding: 1rem;
-    font-size: 1.5rem;
+    padding: 5px 10px;
     cursor: pointer;
-    border-radius: 0.5rem;
-    z-index: 1100; /* Encima del contenido */
+    border-radius: 3px;
 }
 
-.close-menu:hover {
-    background-color: #e53935;
+/* Menú lateral */
+#navegacion {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100%;
+    background-color: #343a40;
+    color: white;
+    display: none;
+    flex-direction: column;
+    padding: 20px;
+    z-index: 999;
 }
 
 #navegacion.show {
-    visibility: visible; /* Muestra el menú */
-    opacity: 1;
-    display: flex; /* Asegura que el flexbox funcione al estar visible */
+    display: flex;
 }
 
-#navegacion.show .close-menu {
-    display: block;
+.barra {
+    list-style: none;
+    padding: 0;
 }
 
-@media (max-width: 768px) {
-
-    li {
-        font-size: 1.1rem;
-    }
-
-    li:hover {
-        background-color: deeppink;
-    }
-
-    .close-menu {
-        display: none;
-        position: absolute;
-        top: 2vh;
-        right: 10vw;
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 1rem;
-        font-size: 1.5rem;
-        cursor: pointer;
-        border-radius: 0.5rem;
-        z-index: 1100; /* Encima del contenido */
-    }
+.barra li {
+    margin-bottom: 15px;
 }
 
-@media (max-width: 480px) {
-
-
-    li {
-        font-size: 1rem;
-    }
-
-
-    .menu-toggle {
-        font-size: 1.2rem;
-        padding: 1.5rem;
-    }
-
-    .close-menu {
-        display: none;
-        position: absolute;
-        top: 2vh;
-        right: 10vw;
-        background-color: #f44336;
-        color: white;
-        border: none;
-        padding: 1rem;
-        font-size: 1.5rem;
-        cursor: pointer;
-        border-radius: 0.5rem;
-        z-index: 1100; /* Encima del contenido */
-    }
+.barra button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    width: 100%;
+    text-align: left;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
+/* Ventana emergente */
 #ventana {
-    display: none;
-    position: absolute;
-    top: 20%;
+    position: fixed;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 300px;
-    padding: 20px;
     background-color: white;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    text-align: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    display: none;
+    z-index: 1000;
 }
-input[type="text"] {
-    width: 80%;
-    padding: 8px;
-    margin: 10px 0;
-    border-radius: 5px;
+
+#ventana h2 {
+    margin-top: 0;
+}
+
+#ventana input,
+#ventana textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
-}
-textarea {
-    width: 80%;
-    height: 100px;
-    padding: 8px;
-    margin: 10px 0;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    font-size: 14px;
+    font-family: inherit;
 }
+
 .ventana-footer {
     display: flex;
     justify-content: space-between;
 }
-#notas {
-    margin-top: 20px;
-    width: 80%;
-}
-.nota {
-    background-color: white;
-    padding: 15px;
-    margin-bottom: 15px;
+
+.ventana-footer button {
+    padding: 10px 15px;
+    border: none;
     border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    font-size: 14px;
 }
+
+#botonGuardar {
+    background-color: #28a745;
+    color: white;
+}
+
+#botonCerrar {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Notas */
+.nota {
+    width: 250px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 15px;
+    position: absolute;
+    cursor: grab;
+    z-index: 10;
+    transition: all 0.2s ease; /* Suaviza el movimiento */
+}
+
 .nota h3 {
     margin: 0 0 10px;
+    font-size: 18px;
+    color: #007bff;
 }
+
 .nota p {
-    margin: 0;
+    margin: 0 0 10px;
+    font-size: 14px;
+    color: #555;
 }
-.nota button {
-    margin-top: 10px;
-    background-color: #ffc107;
-    border: none;
-    padding: 5px 10px;
-    color: white;
+
+.nota textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
     border-radius: 5px;
+    display: none;
+}
+
+.nota button {
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.nota button:nth-child(4) {
+    background-color: #007bff;
+    color: white;
+    margin-right: 5px;
+}
+
+.nota button:nth-child(5) {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* Contador de tiempo */
+.contador-tiempo {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+/* Efectos de arrastrar y soltar */
+.nota[draggable="true"] {
+    cursor: grab;
+}
+
+.nota.dragging {
+    opacity: 0.5;
+    border: 2px dashed #007bff;
+}
+
+.nota.over {
+    border: 2px dashed #28a745;
+}
+
+/* Para evitar que las notas se solapen o se superpongan al arrastrarlas */
+body {
+    position: relative;
+    overflow: hidden; /* Para que las notas no se salgan de la ventana */
 }

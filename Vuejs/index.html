@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista de la Compra</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.7.14/dist/vue.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #000000;
+    }
+    .container {
+      max-width: 500px;
+      margin: 0 auto;
+      background: #5f5f5f;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    ul {
+      display: flex;
+      flex-direction: column;
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      display: flex;
+      flex-direction: row;
+      justify-content:space-around;
+      align-items:flex-start;
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
+      background-color: #ddd;
+      border-radius: 2em 2em 2em 2em ;
+    }
+    li:last-child {
+      border-bottom: none;
+    }
+    .delete {
+      color: red;
+      cursor: pointer;
+    }
+
+    .subrayar {
+      color: #45a049;
+      cursor: pointer;
+    }
+
+    .tachado {
+      text-decoration: line-through;
+      color: rgb(57, 153, 28);
+    }
+
+    input {
+      width: calc(100% - 50px);
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 2em 2em 2em 2em;
+    }
+    button {
+      padding: 10px;
+      width: 50%;
+      background-color: #4cafa2;
+      color: white;
+      border-radius: 2em 2em 2em 2em;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+
+    section{
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+    }
+  </style>
+</head>
+<body>
+  <div id="app" class="container">
+    <h2>Lista de la Compra</h2>
+    <input
+      type="text"
+      v-model="newItem"
+      placeholder="Añadir un producto"
+      @keyup.enter="addItem"
+    />
+    <button @click="addItem">Añadir</button>
+    <ul>
+      <li v-for="(item, index) in items" :key="index">
+        <span :class="{ tachado: item.tachado }">{{ item.text }}</span>
+        <span class="subrayar" @click="toggleTachado(index)">O</span>
+        <span class="delete" @click="removeItem(index)">X</span>
+
+        <section>
+          <button>Low</button>
+          <button>Medium</button>
+          <button>Hard</button>
+        </section>
+      </li>
+    </ul>
+  </div>
+
+  <script>
+    new Vue({
+      el: "#app",
+      data: {
+        newItem: "",
+        items: []
+      },
+      mounted() {
+        // Cargar elementos desde LocalStorage
+        const savedItems = localStorage.getItem("shoppingList");
+        if (savedItems) {
+          this.items = JSON.parse(savedItems);
+        }
+      },
+      methods: {
+        addItem() {
+          if (this.newItem.trim() !== "") {
+            this.items.push({ text: this.newItem.trim(), tachado: false });
+            this.newItem = "";
+            this.saveItems();
+          }
+        },
+        removeItem(index) {
+          this.items.splice(index, 1);
+          this.saveItems();
+        },
+        toggleTachado(index) {
+          this.items[index].tachado = !this.items[index].tachado;
+          this.saveItems();
+        },
+        saveItems() {
+          localStorage.setItem("shoppingList", JSON.stringify(this.items));
+        }
+      }
+    });
+  </script>
+</body>
+</html>

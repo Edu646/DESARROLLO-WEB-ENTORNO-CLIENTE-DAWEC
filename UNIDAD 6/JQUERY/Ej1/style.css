@@ -1,0 +1,15 @@
+#tabla{
+    border: 3px solid black;
+    width: 500px;
+    height: 500px;
+}
+
+td {
+    border: 3px solid black;
+    width: 50%;
+    height: 50%;
+    color: blue;
+    font-weight: bold;
+
+   
+  }

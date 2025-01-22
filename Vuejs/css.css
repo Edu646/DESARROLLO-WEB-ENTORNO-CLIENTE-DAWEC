@@ -1,0 +1,13 @@
+#app {
+    border: black dashed 1px;
+    width: 200px;
+    padding: 0 20px 20px 20px;
+  }
+  #app > div {
+    width: 140px;
+    height: 60px;
+    background-color: lightgreen;
+    padding: 20px;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+  }
