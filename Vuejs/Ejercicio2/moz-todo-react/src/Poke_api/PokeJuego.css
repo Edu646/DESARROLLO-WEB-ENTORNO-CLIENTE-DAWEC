@@ -1,0 +1,109 @@
+
+  
+  /* Encabezado principal */
+  
+  /* Imagen del Pokémon */
+  .PokemonImage {
+    max-width: 300px;
+    margin: 20px auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  
+  
+  /* Barra de intentos restantes */
+  p {
+    font-size: 1.1rem;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+  /* Entrada de texto para la respuesta */
+  input[type="text"] {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+  }
+  
+  input[type="text"]:focus {
+    outline: none;
+    border-color: #3b99fc;
+    box-shadow: 0 0 5px rgba(59, 153, 252, 0.3);
+  }
+  
+  /* Botón de comprobar respuesta */
+  button {
+    background-color: #3b99fc;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s ease;
+  }
+  
+  button:hover {
+    background-color: #3384d3;
+  }
+  
+  /* Botón de terminar juego */
+  button:disabled {
+    background-color: #b3d6fc;
+    cursor: not-allowed;
+  }
+  
+  /* Sección de puntuación */
+  h2 {
+    color: #333;
+    font-size: 2rem;
+    margin-top: 30px;
+  }
+  
+  .puntuacion {
+    font-size: 1.5rem;
+    color: #28a745;
+    margin-bottom: 20px;
+  }
+  
+  /* Ranking */
+  h3 {
+    font-size: 1.6rem;
+    color: #333;
+    margin-top: 30px;
+  }
+  
+  ul.ranking {
+    list-style-type: none;
+    padding: 0;
+    font-size: 1.1rem;
+    text-align: left;
+  }
+  
+  ul.ranking li {
+    background-color: #f0f4f8;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 8px;
+    color: #555;
+  }
+  
+  ul.ranking li span {
+    font-weight: bold;
+  }
+  
+  /* Mensaje cuando no hay sesión activa */
+  .PokemonGame p {
+    font-size: 1.2rem;
+    color: #e74c3c;
+    margin-top: 20px;
+  }
+  
+  

@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import React from 'react';
 import './App.css';
+import Pokemones from './Poke_api/Header_poke'
 
-import Ejercicio8 from './Ejercicio8/Ejercicio8';
+
 
 function App() {
- 
   return (
-   <Ejercicio8></Ejercicio8>
+    
+    <Pokemones></Pokemones>
+   
   );
 }
 
