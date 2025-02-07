@@ -49,7 +49,7 @@ const App = () => {
             <li><a href="/Juego">Jugar</a></li>
             {user && (
               <>
-                <li><span>Bienvenido, {user.displayName }</span></li>
+                <li><span>Bienvenido, {user.displayName || user.email}</span></li>
                 <li><button onClick={handleLogout}>Cerrar sesión</button></li>
               </>
             )}
